@@ -18,7 +18,7 @@ app.use(express.static("public"));
 //Routes
 //test
 app.get("/", (req, res) => {
-  res.send("anmial cookies");
+  res.send("animals");
 });
 
 //Listenerr
