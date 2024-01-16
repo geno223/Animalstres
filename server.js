@@ -1,8 +1,10 @@
 //Dependencies
 require('dotenv').config()
+
 const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
+const AnimalRouter = require("./controllers/animal")
 
 //App Object
 
@@ -17,9 +19,11 @@ app.use('/static', express.static('public'))
 
 //Routes/Routers
 
-app.get('/', (req, res) => (
+app.get('/', (req, res) => {
     res.send('server is working')
-))
+})
+
+app.use('/animal', AnimalRouter)
 
 //server Listener
 const PORT = process.env.PORT || 3000

@@ -1,12 +1,12 @@
-const mongoose = require("./connection")
+const mongoose= require('./connection')
 
 const animalSchema = new mongoose.Schema({
-    species: String,
+    species: String, 
+    extinct: Boolean, 
     location: String,
-    lifeExpectancy: Number,
-    extinct: Boolean
+    lifeExpectancy: Number
 })
 
-const Animal =  mongoose.model('Animal', animalSchema)
+const Animal =mongoose.model("Animal", animalSchema)
 
-module.exports= Animal
+module.exports = Animal
