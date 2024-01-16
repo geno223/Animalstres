@@ -1,35 +1,68 @@
-const express = require('express')
-const Animal = require('../models/animal')
-
-const router = express.Router()
+const express = require("express");
+const Animal = require("../models/animal");
+const seedData = require("../models/seedData");
+const router = express.Router();
 //routes
 
-//Seed Route
+// Seed
+router.get("/seed", async (req, res) => {
+  try {
+    // Delete all animals
+    await Animal.deleteMany({});
+    // seed animals
+    const animals = await Animal.create(seedData);
+    // send animals
+    res.json(animals);
+  } catch (error) {
+    console.log(error.message);
+    res.send("Theres a issue with the seeds");
+  }
+});
+//index-get
+router.get("/", async (req, res) => {
+  const animals = await Animal.find({});
+  res.render("animal/index.ejs", { animals });
+});
 
-router.get("/seed", async (req, res)=>{
-    await Animal.deleteMany({})
-    const animals = await Animal.create([
-        { 
-            species: "Giant Panda", 
-            extinct: false, 
-            location: "China",
-            lifeExpectancy: 15
-         },
-         { 
-          species: "Grey Whale",
-          extinct: false, 
-          location: "Oceans", 
-          lifeExpectancy: 50
-        },
-         { 
-          species: "Golden Eagle", 
-          extinct: false,
-          location: "North America, Eurasia",
-          lifeExpectancy: 20
-          },
-       
-    ])
-    res.json(animals)
+//new-get
+router.get("/new", (req, res) => {
+  res.render("animal/new.ejs");
+});
+//delete
+router.delete("/:id", async (req, res) =>{
+    const animal = await Animal.findByIdAndDelete(req.params.id)
+    res.redirect("/animal")
 })
+//update-put
+router.put("/:id", async (req, res)=>{
+    const id = req.params.id
+    req.body.extinct = req.body.extinct === "on" ? true : false;
+    const animal = await Animal.findByIdAndUpdate(id, req.body)
+    res.redirect(`/animal/${id}`)
+})
+//create- post
+router.post("/", async (req, res) => {
+  req.body.extinct = req.body.extinct === "on" ? true : false;
+  await Animal.create(req.body)
+  res.redirect("/animal")
+});
+//edit- get
+router.get("/:id/edit", async(req, res)=>{
+    const id = req.params.id
+    const animal = await Animal.findById(id)
+    res.render("animal/edit.ejs", {animal})
+})
+//show- get
 
-module.exports= router
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const animal = await Animal.findById(id);
+    res.render("animal/show.ejs", { animal });
+  } catch (error) {
+    console.log(error.message);
+    res.send("Theres a issue with the show");
+  }
+});
+
+module.exports = router;
