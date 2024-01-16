@@ -8,11 +8,17 @@
   h1{
     color: yellowgreen;
   }
+  h2{
+    color: yellowgreen;
+  }
+  
+  
   </style>
 <body>
 
 <h1>List of Animals</h1>
-
+<h2><%=animals.species%></h2>
+  
 <% for(let i =0; i < animals.length; i++) {%>
 <a href="/animal/<%= animals[i]._id%>"><h2><%= animals[i].species %></h2></a>
     <%}%>

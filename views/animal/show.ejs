@@ -15,14 +15,20 @@
   h1{
     color: yellowgreen;
   }
-  
+  h2{
+    color: yellowgreen;
+  }
+  h3{
+    color: yellowgreen;
+  }
   
   
   </style>
 <body>
     <div>
         <h1><%=animal.species%></h1>
-        
+        <h2><%=animal.location%></h2>
+        <h3><%=animal.lifeExpectancy%></animal.lifeExpectancy></h3>
         <a href="/animal/<%= animal._id%>/edit">Edit</a>
         <form action="/animal/<%=animal._id%>?_method=DELETE" method="post">
         <button>Delete</button>
