@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+    background-image: url("https://i.imgur.com/ZDZWyBC.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-bottom: 80px;
+  }
+  h1{
+    color: yellowgreen;
+  }
+  </style>
+    <body>
+        <form action="/animal" method="post">
+          <label>name <input type="text" name="species"/></label>
+          <label>location<input type="text" name="location"/></label>
+         <label>Life Span <input type="text" name='lifeExpectancy'/></label> 
+         <label>Extinct<input type="checkbox" name="extinct"></label>
+          <input type="submit" value="add"/>
+        </form>
+      </body>
+      
+
+</html>

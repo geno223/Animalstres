@@ -1,0 +1,20 @@
+<style>
+    body {
+    background-image: url("https://i.imgur.com/ZDZWyBC.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-bottom: 80px;
+  }
+  h1{
+    color: yellowgreen;
+  }
+  </style>
+<body>
+
+<h1>List of Animals</h1>
+
+<% for(let i =0; i < animals.length; i++) {%>
+<a href="/animal/<%= animals[i]._id%>"><h2><%= animals[i].species %></h2></a>
+    <%}%>
+
+</body>
